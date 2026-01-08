@@ -424,9 +424,9 @@ section {
 /* Small Devices (640px) */
 @media (max-width: 640px) {
   .logo { height: 56px; }
-  header { padding: 6px 12px; flex-direction: column; gap: 10px; }
+  header { padding: 6px 12px; flex-direction: row; gap: 10px; justify-content: space-between; align-items: center; }
   header h1 { font-size: 16px; }
-  header nav { width: 100%; text-align: center; }
+  header nav { width: auto; text-align: center; }
   nav a { margin-right: 8px; font-size: 13px; padding: 4px 6px; }
   .hero { min-height: 200px; background-position: center 50%; }
   .hero h2 { font-size: 22px; margin: 0 0 10px; }
@@ -841,9 +841,9 @@ form select, form input, form textarea {
                 <p style="color:#333;line-height:1.6;"><strong>Payment Structure:</strong></p>
                 <ul style="color:#555;line-height:1.8;padding-left:20px;margin-bottom:12px;">
                   <li><strong>Below £150:</strong> Full upfront</li>
-                  <li><strong>£150–£200:</strong> 50% upfront, balance before delivery</li>
-                  <li><strong>£200–£300:</strong> Three-stage payments</li>
-                  <li><strong>Above £300:</strong> Custom arrangement</li>
+                  <li><strong>£151–£300:</strong> 50% upfront, balance before delivery</li>
+                  <li><strong>£300–£500:</strong> Three-stage payments</li>
+                  <li><strong>Above £500:</strong> Custom arrangement</li>
                 </ul>
                 <p style="color:#666;font-size:0.9rem;background:#fff3cd;padding:12px;border-radius:6px;margin:0;"><strong>🔒 Guarantee:</strong> No work released until full payment received.</p>
               </div>
