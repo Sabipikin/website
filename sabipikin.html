@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sabipikin | Academic Help</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="logo3.png">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  background: #f7f9fc;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+header {
+  background: #6a1b9a;
+  color: #fff;
+  padding: 8px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  overflow-x: hidden;
+}
+header h1 { margin: 0; display: flex; align-items: center; }
+nav a {
+  color: #fff;
+  margin-right: 14px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+section {
+  padding: 60px 40px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  overflow-x: hidden;
+}
+.hero {
+  /* banner.png with purple overlay */
+  background-image: linear-gradient(rgba(106,27,154,0.55), rgba(106,27,154,0.55)), url("banner.png");
+  background-size: cover;
+  background-position: center 35%;
+  background-repeat: no-repeat;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+  padding: 0; /* content padding handled inside .hero-content */
+  max-width: none; /* override section max-width so hero fills full width */
+  width: 100%;
+  margin: 0;
+}
+.hero h2 { font-size: 36px; margin: 0 0 12px; }
+.hero p { font-size: 16px; margin: 0 0 18px; }
+.hero-content { max-width: 1100px; padding: 40px 20px; margin: 0 auto; box-sizing: border-box; }
+.hero-actions { display:flex; gap:12px; justify-content:center; margin-top:12px; }
+.hero-actions button { padding:10px 16px; border-radius:6px; font-size:15px; }
+/* Home page responsive fixes */
+.home-main {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.home-section {
+  background: #f7f9fc;
+}
+
+@media (max-width: 900px) {
+  #home-content > div {
+    flex-direction: column !important;
+    gap: 0 !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 30px 16px !important;
+  }
+  
+  #home-content > div > div {
+    flex: 1 !important;
+    padding: 20px 0 !important;
+    min-width: unset !important;
+  }
+  
+  #home-content h1 {
+    font-size: 2rem !important;
+  }
+  
+  #home-content .intro {
+    font-size: 1rem !important;
+  }
+}
+
+@media (max-width: 640px) {
+  #home-content > div {
+    flex-direction: column !important;
+    gap: 0 !important;
+    padding: 20px 12px !important;
+  }
+  
+  #home-content > div > div {
+    padding: 16px 0 !important;
+  }
+  
+  #home-content h1 {
+    font-size: 1.6rem !important;
+  }
+  
+  #home-content .intro {
+    font-size: 0.9rem !important;
+  }
+  
+  #home-content ul li {
+    font-size: 0.85rem !important;
+  }
+}
+.about { background: white; padding: 34px; border-radius:12px; box-shadow: 0 8px 24px rgba(16,24,40,0.06); }
+.about h3 { color:#2b0236; margin-top:0; }
+.intro { color:#333; line-height:1.7; }
+.services { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:18px; margin-top:20px; }
+.service-card { 
+  padding:18px; 
+  border-radius:8px; 
+  background:#fff; 
+  box-shadow: 0 4px 14px rgba(11,12,15,0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+.service-card:hover {
+  box-shadow: 0 12px 28px rgba(11,12,15,0.12);
+  transform: translateY(-6px);
+}
+.service-card h4 { margin:0 0 8px; color:#6a1b9a; }
+.stats { display:flex; gap:18px; flex-wrap:wrap; margin-top:22px; }
+.stat { 
+  background:#6a1b9a; 
+  color:#fff; 
+  padding:18px; 
+  border-radius:8px; 
+  flex:1 1 140px; 
+  min-width:120px; 
+  text-align:center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+.stat:hover {
+  box-shadow: 0 12px 28px rgba(106,27,154,0.3);
+  transform: translateY(-8px) scale(1.05);
+}
+.stat .num { font-size:20px; font-weight:700; }
+.testimonial-wrap { margin-top:24px; display:grid; grid-template-columns: 1fr; gap:12px; }
+.testimonial { 
+  background:#fff; 
+  padding:16px; 
+  border-left:4px solid #6a1b9a; 
+  border-radius:6px; 
+  box-shadow: 0 4px 10px rgba(11,12,15,0.03);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+.testimonial:hover {
+  box-shadow: 0 12px 24px rgba(106,27,154,0.12);
+  transform: translateY(-6px);
+}
+.muted { color:#666; }
+.home-cta { text-align:center; margin-top:26px; }
+.home-cta button { background:#6a1b9a; color:#fff; padding:12px 22px; border-radius:8px; border:none; font-size:16px; }
+@media (max-width:640px) {
+  .stats { flex-direction:column; }
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+/* Dashboard layout */
+.dashboard {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+/* allow main area to grow so footer stays at bottom */
+#dashboard { flex: 1 1 auto; }
+/* top-nav active link */
+.nav a.active {
+  background: rgba(255,255,255,0.08);
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+/* Field cards and work type cards */
+.field-card {
+  padding: 16px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  border-left: 4px solid #6a1b9a;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+.field-card:hover {
+  background: #f0e6ff;
+  box-shadow: 0 8px 20px rgba(106,27,154,0.15);
+  transform: translateY(-6px);
+  border-left-color: #5a1580;
+}
+
+.work-type-card {
+  padding: 14px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  color: #fff;
+}
+.work-type-card:hover {
+  background: rgba(255,255,255,0.2);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  transform: translateY(-6px);
+  border-color: rgba(255,255,255,0.5);
+}
+
+.why-choose-card {
+  padding: 18px;
+  background: #f0e6ff;
+  border-radius: 10px;
+  border-left: 4px solid #6a1b9a;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+.why-choose-card:hover {
+  background: #e8d7ff;
+  box-shadow: 0 10px 24px rgba(106,27,154,0.2);
+  transform: translateY(-6px);
+}
+
+/* Terms and Conditions Cards */
+.terms-card {
+  background: #fff;
+  padding: 28px 24px;
+  border-radius: 12px;
+  border-left: 5px solid #6a1b9a;
+  box-shadow: 0 4px 14px rgba(11,12,15,0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+.terms-card:hover {
+  box-shadow: 0 12px 28px rgba(106,27,154,0.15);
+  transform: translateY(-6px);
+  border-left-color: #5a1580;
+}
+
+@media (max-width: 900px) {
+  .terms-card {
+    padding: 22px 18px;
+  }
+  .terms-card h3 {
+    font-size: 1.1rem !important;
+  }
+  .terms-card ul, .terms-card p {
+    font-size: 0.95rem !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .terms-card {
+    padding: 18px 14px;
+  }
+  .terms-card h3 {
+    font-size: 1rem !important;
+  }
+  .terms-card ul, .terms-card p {
+    font-size: 0.9rem !important;
+  }
+  .terms-card ul {
+    padding-left: 16px !important;
+  }
+}
+
+/* Responsive options container */
+.options-container {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0;
+  justify-content: space-between;
+  margin: -40px 0 0 0;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+.option-card {
+  background: #fff;
+  border-radius: 0;
+  box-shadow: 0 8px 32px rgba(106,27,154,0.10);
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+.option-card:hover {
+  box-shadow: 0 16px 40px rgba(106,27,154,0.25);
+  transform: translateY(-8px);
+}
+
+.option-card:not(:last-child) { border-right: 1px solid #eee; }
+
+@media (max-width: 1000px) {
+  .options-container {
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: -20px 0 0 0;
+    padding: 0 16px;
+  }
+  .option-card {
+    flex: 1 1 calc(50% - 8px);
+    border-right: none;
+    border-radius: 8px;
+    padding: 24px 20px;
+  }
+  .option-card:nth-child(3) {
+    flex: 1 1 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .options-container {
+    flex-direction: column;
+    gap: 12px;
+    margin: 0;
+    padding: 0 16px;
+  }
+  .option-card {
+    flex: 1 1 100%;
+    border-radius: 8px;
+    padding: 20px 16px;
+  }
+  .option-card h2 { font-size: 1.1rem !important; }
+  .option-card p { font-size: 0.9rem !important; }
+  .option-card ul { font-size: 0.85rem !important; padding-left: 16px !important; }
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+.card:hover {
+  box-shadow: 0 14px 32px rgba(0,0,0,0.12);
+  transform: translateY(-8px);
+}
+.card h3 { color: #6a1b9a; }
+
+/* Panel visibility - hide by default */
+.panel {
+  display: none !important;
+}
+.panel.active {
+  display: block !important;
+}
+.cta {
+  background: #6a1b9a;
+  color: white;
+  padding: 40px;
+  text-align: center;
+}
+
+/* logo sizing */
+.logo { height: 110px; display: block; }
+.logo-link { display: inline-block; }
+/* Tablet Breakpoint */
+@media (max-width: 1200px) {
+  .logo { height: 92px; }
+  section { padding: 45px 30px; }
+}
+
+/* Medium Devices (768px) */
+@media (max-width: 900px) {
+  .logo { height: 72px; }
+  header { padding: 8px 16px; }
+  header h1 { font-size: 18px; }
+  nav a { margin-right: 12px; font-size: 14px; }
+  .hero h2 { font-size: 28px; }
+  .hero p { font-size: 14px; }
+  .hero { min-height: 220px; background-position: center 45%; }
+  .hero-content { padding: 30px 16px; }
+  section { padding: 35px 16px; }
+}
+
+/* Small Devices (640px) */
+@media (max-width: 640px) {
+  .logo { height: 56px; }
+  header { padding: 6px 12px; flex-direction: column; gap: 10px; }
+  header h1 { font-size: 16px; }
+  header nav { width: 100%; text-align: center; }
+  nav a { margin-right: 8px; font-size: 13px; padding: 4px 6px; }
+  .hero { min-height: 200px; background-position: center 50%; }
+  .hero h2 { font-size: 22px; margin: 0 0 10px; }
+  .hero p { font-size: 13px; margin: 0 0 14px; }
+  .hero-content { padding: 20px 12px; }
+  .hero-actions { flex-direction: column; gap: 10px; }
+  .hero-actions button { width: 100%; padding: 12px 16px; font-size: 14px; }
+  section { padding: 20px 12px; }
+}
+
+/* Extra Small Devices (480px) */
+@media (max-width: 480px) {
+  .logo { height: 48px; }
+  header { padding: 4px 8px; }
+  header h1 { font-size: 14px; }
+  nav a { margin-right: 6px; font-size: 12px; }
+  .hero { min-height: 160px; background-position: center 55%; }
+  .hero h2 { font-size: 18px; }
+  .hero p { font-size: 12px; }
+  .hero-content { padding: 16px 10px; }
+  .hero-actions button { font-size: 13px; padding: 10px 14px; }
+  section { padding: 16px 10px; }
+  .dashboard { margin: 20px auto; padding: 0 10px; }
+}
+
+button {
+  background: #ff9800;
+  border: none;
+  padding: 14px 25px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+button:hover { background: #e68900; }
+footer {
+  background: #6a1b9a;
+  color: #fff;
+  text-align: center;
+  padding: 25px;
+  margin-top: 30px;
+}
+
+.footer-services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.footer-col h4 { margin-top: 0; font-size: 1.1rem; }
+.footer-col p { font-size: 0.95rem; line-height: 1.6; }
+.footer-col {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  padding: 0;
+}
+.footer-col:hover {
+  transform: translateY(-4px);
+}
+
+@media (max-width: 900px) {
+  .footer-services { grid-template-columns: 1fr; gap: 20px; padding: 20px 16px; }
+  .footer-col { padding: 16px 0; border-top: 1px solid rgba(255,255,255,0.1); }
+  .footer-col:first-child { border-top: none; padding-top: 0; }
+  footer { padding: 20px; }
+}
+
+@media (max-width: 640px) {
+  .footer-services { grid-template-columns: 1fr; gap: 16px; padding: 16px 12px; }
+  .footer-col h4 { font-size: 1rem; }
+  .footer-col p { font-size: 0.9rem; }
+  footer { padding: 16px; text-align: left; }
+  footer div:last-child { text-align: left; font-size: 0.85rem; }
+}
+.hidden { display: none; }
+form select, form input, form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+/* Modern Academic Help Button */
+.modern-academic-btn {
+  display: inline-block;
+  background: #fff;
+  color: #6a1b9a !important;
+  font-weight: 700;
+  padding: 18px 38px;
+  border-radius: 14px;
+  font-size: 1.18em;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+  margin: 16px auto;
+  position: relative;
+  overflow: hidden;
+}
+.modern-academic-btn:hover, .modern-academic-btn:focus {
+  background: #f5f5f5;
+  box-shadow: 0 10px 32px rgba(0,0,0,0.12);
+  transform: translateY(-2px) scale(1.03);
+  color: #6a1b9a;
+}
+
+@media (max-width: 900px) {
+  .modern-academic-btn {
+    padding: 14px 28px;
+    font-size: 1rem;
+    margin: 12px auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .modern-academic-btn {
+    width: 90%;
+    max-width: 100%;
+    padding: 14px 20px;
+    font-size: 0.95em;
+    display: block;
+    margin: 12px auto;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>
+    <a href="#home" class="logo-link" aria-label="Home">
+      <img src="logo1.png" alt="Sabipikin" class="logo">
+    </a>
+  </h1>
+  <nav class="nav">
+    <a href="#academic">Academic Help</a>
+    <a href="#terms">Terms & Conditions</a>
+  </nav>
+</header>
+
+<section id="home" class="hero">
+  <div class="hero-content">
+    <h2>Empowering Knowledge. Simplifying Learning.</h2>
+    <p>Sabipikin is built on the idea of helping people understand, learn, and succeed — academically and professionally.</p>
+    <div class="hero-actions">
+      <button onclick="showPanel('academic')" aria-label="Get Academic Help">Get Academic Help</button>
+    </div>
+  </div>
+</section>
+
+<!-- Redesigned Home content: modern, creative, attention-grabbing -->
+<section id="home-content" class="home-main home-section" style="padding:0;width:100%;box-sizing:border-box;overflow-x:hidden;">
+  <div style="display:flex;flex-wrap:wrap;align-items:stretch;gap:20px;max-width:1200px;margin:0 auto;padding:40px 20px;box-sizing:border-box;width:100%;">
+    <!-- Left: About & Headline -->
+    <div style="flex:1 1 calc(50% - 10px);min-width:280px;display:flex;flex-direction:column;justify-content:center;padding:20px;box-sizing:border-box;">
+      <h1 style="font-size:2.6rem;line-height:1.1;color:#6a1b9a;font-weight:800;margin:0 0 18px;letter-spacing:-1px;">Unlock Your Academic & Career Success</h1>
+      <p class="intro" style="font-size:1.18rem;color:#333;margin-bottom:18px;">Sabipikin bridges the gap between learning, academic excellence, and real-world achievement. We empower students and professionals to excel, understand, and confidently defend their work—across the UK, Europe, North America, and beyond.</p>
+      <ul style="list-style:none;padding:0;margin:0 0 24px 0;">
+        <li style="margin-bottom:10px;display:flex;align-items:center;"><span style="font-size:1.3em;color:#6a1b9a;margin-right:10px;">&#10003;</span> Academic Help, Mentorship, and Skills Training</li>
+        <li style="margin-bottom:10px;display:flex;align-items:center;"><span style="font-size:1.3em;color:#6a1b9a;margin-right:10px;">&#10003;</span> 1:1 Support & Real Results</li>
+        <li style="display:flex;align-items:center;"><span style="font-size:1.3em;color:#6a1b9a;margin-right:10px;">&#10003;</span> 100% Original, AI-Free Work</li>
+      </ul>
+      <div class="home-cta" style="margin-top:auto;text-align:left;">
+        <button style="font-size:1.1em;padding:16px 32px;box-shadow:0 4px 16px rgba(106,27,154,0.10);" onclick="showPanel('academic'); openForm('Full Writing Service')">Get Academic Help Now</button>
+      </div>
+    </div>
+    <!-- Right: Stats & Testimonials -->
+    <div style="flex:1 1 calc(50% - 10px);min-width:280px;display:flex;flex-direction:column;justify-content:center;padding:20px;box-sizing:border-box;">
+      <div class="stats" style="margin-bottom:30px;gap:18px;">
+        <div class="stat" style="background:#fff;color:#6a1b9a;border:2px solid #6a1b9a;"><div class="num">95%</div><div class="muted" style="color:#6a1b9a;">Success Rate</div></div>
+        <div class="stat" style="background:#fff;color:#6a1b9a;border:2px solid #6a1b9a;"><div class="num">60%</div><div class="muted" style="color:#6a1b9a;">Distinction</div></div>
+        <div class="stat" style="background:#fff;color:#6a1b9a;border:2px solid #6a1b9a;"><div class="num">35%</div><div class="muted" style="color:#6a1b9a;">Merit</div></div>
+        <div class="stat" style="background:#fff;color:#6a1b9a;border:2px solid #6a1b9a;"><div class="num">10%+</div><div class="muted" style="color:#6a1b9a;">Published</div></div>
+      </div>
+      <div class="testimonial-wrap" style="margin-top:0;max-width:100%;">
+        <div class="testimonial" style="background:#f7f9fc;border-left:4px solid #6a1b9a;">
+          <strong style="color:#6a1b9a;">“Zero coding knowledge to IT role!”</strong>
+          <p class="muted">“The structured curriculum and hands-on labs helped me secure my first IT role.”<br><span style="color:#444;">— Chinedu O.</span></p>
+        </div>
+        <div class="testimonial" style="background:#f7f9fc;border-left:4px solid #6a1b9a;">
+          <strong style="color:#6a1b9a;">“Best decision: DevOps bootcamp”</strong>
+          <p class="muted">“I gained skills in Python, Linux, Git and AWS — tutors were supportive throughout.”<br><span style="color:#444;">— Maxwell O.</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="dashboard">
+  <div class="dashboard">
+    <main>
+      <div id="panel-academic" class="panel">
+        <section style="width:100%;margin:0;padding:0;box-sizing:border-box;">
+          <div style="background:#6a1b9a;color:#fff;padding:48px 24px 32px 24px;text-align:center;border-radius:0 0 24px 24px;">
+            <h1 style="font-size:2.4rem;font-weight:800;margin-bottom:10px;letter-spacing:-1px;">Choose How You Want Us to Help You</h1>
+            <p style="font-size:1.18rem;max-width:700px;margin:0 auto 18px;">We offer three clear academic support options. Select any option and get connected directly to an academic support agent who will discuss your project details and pricing.</p>
+            <div style="margin:24px 0 0 0;text-align:center;">
+              <a
+      href="javascript:void(
+        window.open(
+          'https://form.jotform.com/260071714644049',
+          'blank',
+          'scrollbars=yes,
+          toolbar=no,
+          width=700,
+          height=500'
+        )
+      )
+    " id="academic-help-btn" class="modern-academic-btn">Get Academic Help Now</a>
+            </div>
+          </div>
+          <div class="options-container">
+            <!-- Option 1 -->
+            <div class="option-card">
+              <h2 style="color:#6a1b9a;font-size:1.3rem;font-weight:700;margin:0 0 10px;">🎯 Full Writing Service</h2>
+              <p style="color:#666;font-size:0.95em;margin:0 0 12px;">We handle everything from start to finish—your success is our mission.</p>
+              <ul style="padding-left:18px;margin:0 0 12px 0;font-size:0.95em;color:#333;">
+                <li>Topic & proposal development</li>
+                <li>Deep research & data collection</li>
+                <li>Professional writing & editing</li>
+                <li>Perfect referencing (APA, Harvard, IEEE, MLA)</li>
+                <li>Defense preparation & support</li>
+              </ul>
+              <div style="margin-bottom:10px;color:#6a1b9a;font-size:0.9em;font-weight:600;">✨ Ideal for: Students with tight deadlines or complex projects who want full peace of mind.</div>
+            </div>
+            <!-- Option 2 -->
+            <div class="option-card">
+              <h2 style="color:#6a1b9a;font-size:1.3rem;font-weight:700;margin:0 0 10px;">🤝 Partial Support</h2>
+              <p style="color:#666;font-size:0.95em;margin:0 0 12px;">You stay in control while our experts guide you to excellence.</p>
+              <ul style="padding-left:18px;margin:0 0 12px 0;font-size:0.95em;color:#333;">
+                <li>Chapter & section enhancement</li>
+                <li>Literature review boost</li>
+                <li>Methodology & structure guidance</li>
+                <li>Data analysis & discussion support</li>
+                <li>Proofreading & tone refinement</li>
+              </ul>
+              <div style="margin-bottom:10px;color:#6a1b9a;font-size:0.9em;font-weight:600;">✨ Ideal for: Engaged students who want expert support while maintaining creative control.</div>
+            </div>
+            <!-- Option 3 -->
+            <div class="option-card">
+              <h2 style="color:#6a1b9a;font-size:1.3rem;font-weight:700;margin:0 0 10px;">💡 Expert Guidance</h2>
+              <p style="color:#666;font-size:0.95em;margin:0 0 12px;">One-on-one mentorship to sharpen your academic direction.</p>
+              <ul style="padding-left:18px;margin:0 0 12px 0;font-size:0.95em;color:#333;">
+                <li>Research direction & strategy</li>
+                <li>Topic refinement & focus</li>
+                <li>Best methodology selection</li>
+                <li>Data interpretation techniques</li>
+                <li>Defense & presentation prep</li>
+              </ul>
+              <div style="margin-bottom:10px;color:#6a1b9a;font-size:0.9em;font-weight:600;">✨ Ideal for: Independent learners seeking expert direction and confidence-building advice.</div>
+            </div>
+          </div>
+          <!-- Process Flow -->
+          <div style="background:#f7f9fc;padding:38px 24px 24px 24px;margin-top:48px;border-radius:24px;">
+            <h2 style="text-align:center;color:#6a1b9a;font-size:1.5rem;font-weight:700;margin-bottom:18px;">⚡ Your Journey with Sabipikin</h2>
+            <ol style="max-width:700px;margin:0 auto 18px auto;padding-left:22px;color:#333;font-size:1.08em;line-height:1.8;">
+              <li><strong>Choose Your Option</strong> — Select the perfect fit for your academic journey</li>
+              <li><strong>Quick Briefing</strong> — Share your project details & goals with us</li>
+              <li><strong>Expert Consultation</strong> — Get connected with a dedicated Sabipikin academic agent</li>
+              <li><strong>Clear Agreement</strong> — Discuss scope, timeline & transparent pricing</li>
+              <li><strong>Success Starts</strong> — We deliver excellence while you gain confidence</li>
+            </ol>
+            <div style="text-align:center;color:#6a1b9a;font-size:1.08em;margin-bottom:8px;font-weight:600;">🔒 Your privacy is sacred. All discussions remain 100% confidential.</div>
+          </div>
+          <!-- Supported Fields -->
+          <div style="background:#fff;padding:38px 24px 24px 24px;border-radius:24px;">
+            <h2 style="text-align:center;color:#6a1b9a;font-size:1.5rem;font-weight:700;margin-bottom:18px;">🎓 Fields We Master</h2>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;max-width:1200px;margin:0 auto;">
+              <div class="field-card"><strong style="color:#6a1b9a;">Arts & Humanities</strong><br><span style="font-size:0.95em;">English, History, Philosophy, Psychology, Sociology, International Relations</span></div>
+              <div class="field-card"><strong style="color:#6a1b9a;">Business & Finance</strong><br><span style="font-size:0.95em;">Accounting, Economics, Marketing, HR, Project Management, Entrepreneurship</span></div>
+              <div class="field-card"><strong style="color:#6a1b9a;">Tech & Engineering</strong><br><span style="font-size:0.95em;">Software Dev, Web/Mobile, Cloud, Blockchain, DevOps, Networks</span></div>
+              <div class="field-card"><strong style="color:#6a1b9a;">AI & Data Science</strong><br><span style="font-size:0.95em;">Machine Learning, Data Analysis, Big Data, Automation, Generative AI</span></div>
+              <div class="field-card"><strong style="color:#6a1b9a;">STEM Fields</strong><br><span style="font-size:0.95em;">Math, Physics, Engineering, Environmental Science, Statistics</span></div>
+              <div class="field-card"><strong style="color:#6a1b9a;">Security & Health</strong><br><span style="font-size:0.95em;">Cybersecurity, Nursing, Public Health, Education, Certifications</span></div>
+            </div>
+          </div>
+          <!-- Types of Work -->
+          <div style="background:#6a1b9a;padding:38px 24px 24px 24px;border-radius:24px;color:#fff;margin-top:20px;">
+            <h2 style="text-align:center;color:#fff;font-size:1.5rem;font-weight:700;margin-bottom:18px;">📝 What We Work On</h2>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;max-width:1200px;margin:0 auto;">
+              <div class="work-type-card"><strong>Essays & Research Papers</strong><br><small>From concepts to completion, expertly researched.</small></div>
+              <div class="work-type-card"><strong>Lab Reports & Analysis</strong><br><small>Scientific rigor and clear data presentation.</small></div>
+              <div class="work-type-card"><strong>Case Studies</strong><br><small>In-depth analysis with real-world insights.</small></div>
+              <div class="work-type-card"><strong>Dissertations & Theses</strong><br><small>Serious projects that shape careers.</small></div>
+              <div class="work-type-card"><strong>Code & Programming</strong><br><small>From scripts to full applications, fully tested.</small></div>
+              <div class="work-type-card"><strong>Presentations & Slides</strong><br><small>Polished decks that impress audiences.</small></div>
+              <div class="work-type-card"><strong>Problem Sets & Solutions</strong><br><small>Math, physics, engineering – solved step-by-step.</small></div>
+              <div class="work-type-card"><strong>Editing & Proofreading</strong><br><small>Polish your work to perfection with precision feedback.</small></div>
+              <div class="work-type-card"><strong>Portfolios & Capstones</strong><br><small>Showcase-ready projects with professional finesse.</small></div>
+            </div>
+          </div>
+          <!-- Why Choose Us -->
+          <div style="background:#fff;padding:38px 24px 24px 24px;border-radius:24px;margin-top:20px;">
+            <h2 style="text-align:center;color:#6a1b9a;font-size:1.5rem;font-weight:700;margin-bottom:24px;">⭐ Why Students Choose Sabipikin</h2>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;max-width:1200px;margin:0 auto;">
+              <div class="why-choose-card">
+                <div style="font-weight:700;color:#6a1b9a;margin-bottom:8px;">✅ Expert Team</div>
+                <p style="margin:0;font-size:0.95em;color:#333;">Multi-disciplinary academics with proven track records in their fields.</p>
+              </div>
+              <div class="why-choose-card">
+                <div style="font-weight:700;color:#6a1b9a;margin-bottom:8px;">🎯 100% Original Work</div>
+                <p style="margin:0;font-size:0.95em;color:#333;">AI-free, plagiarism-free content crafted specifically for you.</p>
+              </div>
+              <div class="why-choose-card">
+                <div style="font-weight:700;color:#6a1b9a;margin-bottom:8px;">💰 Flexible Pricing</div>
+                <p style="margin:0;font-size:0.95em;color:#333;">Affordable rates with options to discuss and customize based on your budget.</p>
+              </div>
+              <div class="why-choose-card">
+                <div style="font-weight:700;color:#6a1b9a;margin-bottom:8px;">♾️ Unlimited Revisions</div>
+                <p style="margin:0;font-size:0.95em;color:#333;">Refine your work until it's perfect — we get it right for you.</p>
+              </div>
+              <div class="why-choose-card">
+                <div style="font-weight:700;color:#6a1b9a;margin-bottom:8px;">🕐 24/7 Support</div>
+                <p style="margin:0;font-size:0.95em;color:#333;">Always available to answer questions and provide updates on your work.</p>
+              </div>
+              <div style="padding:18px;background:#f0e6ff;border-radius:10px;border-left:4px solid #6a1b9a;">
+                <div style="font-weight:700;color:#6a1b9a;margin-bottom:8px;">🏆 Proven Success</div>
+                <p style="margin:0;font-size:0.95em;color:#333;">Strong record of distinctions, merit grades, and published work.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <!-- Terms and Conditions Panel -->
+      <div id="panel-terms" class="panel">
+        <section style="width:100%;margin:0;padding:0;box-sizing:border-box;">
+          <div style="background:#6a1b9a;color:#fff;padding:48px 24px 32px 24px;text-align:center;border-radius:0 0 24px 24px;">
+            <h1 style="font-size:2.4rem;font-weight:800;margin-bottom:10px;letter-spacing:-1px;">📋 Terms & Conditions</h1>
+            <p style="font-size:1.08rem;max-width:800px;margin:0 auto;color:rgba(255,255,255,0.95);">Our commitment to transparency, fairness, and academic integrity. Please read carefully.</p>
+          </div>
+          <!-- Introduction Section -->
+          <div style="background:#f7f9fc;padding:40px 24px;max-width:1200px;margin:0 auto;">
+            <div style="background:#fff;padding:32px 28px;border-radius:16px;border-left:6px solid #6a1b9a;margin-bottom:24px;box-shadow:0 4px 14px rgba(11,12,15,0.04);transition:all 0.3s cubic-bezier(0.4,0,0.2,1);cursor:pointer;" onmouseover="this.style.boxShadow='0 12px 28px rgba(106,27,154,0.15)';this.style.transform='translateY(-6px)';" onmouseout="this.style.boxShadow='0 4px 14px rgba(11,12,15,0.04)';this.style.transform='translateY(0)';">
+              <h2 style="color:#6a1b9a;font-size:1.5rem;margin-top:0;margin-bottom:14px;">🤝 Introduction</h2>
+              <p style="color:#333;line-height:1.7;margin:0 0 12px;">These Terms and Conditions ("Terms") govern the provision of academic support services by <strong>Sabipikin Academic Help</strong> ("the Agency") to any client or student ("the Client").</p>
+              <p style="color:#333;line-height:1.7;margin:0 0 12px;">By engaging our services, making payment, or accepting any delivered work, you acknowledge that you have read, understood, and agreed to be bound by these Terms.</p>
+              <p style="color:#666;font-size:0.95rem;font-style:italic;">These Terms may be amended at any time, and the version in force at the time of engagement shall apply.</p>
+            </div>
+
+            <!-- Terms Sections -->
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;">
+              <!-- Section 1 -->
+              <div class="terms-card">
+                <h3 style="color:#6a1b9a;font-size:1.2rem;margin-top:0;">📚 Nature of Services</h3>
+                <p style="color:#333;line-height:1.6;"><strong>Sabipikin provides:</strong></p>
+                <ul style="color:#555;line-height:1.8;padding-left:20px;">
+                  <li>Academic writing support</li>
+                  <li>Partial or assistive writing</li>
+                  <li>Editing and proofreading</li>
+                  <li>Research assistance</li>
+                  <li>Academic consultation and guidance</li>
+                </ul>
+                <p style="color:#666;font-size:0.9rem;background:#f0f0f0;padding:12px;border-radius:6px;margin-bottom:0;"><strong>⚠️ Important:</strong> Sabipikin is not an educational institution. The Client remains fully responsible for submission, academic integrity, and compliance with institutional requirements.</p>
+              </div>
+
+              <!-- Section 2 -->
+              <div class="terms-card">
+                <h3 style="color:#6a1b9a;font-size:1.2rem;margin-top:0;">🎯 Academic Performance Target</h3>
+                <p style="color:#333;line-height:1.6;"><strong>Our Target:</strong> Minimum grade of <strong>B</strong> or equivalent, aiming for A, Distinction, or equivalent outcomes.</p>
+                <p style="color:#333;line-height:1.6;"><strong>Refund Policy:</strong> Clients receiving grades lower than B may be eligible for a <strong>10% refund</strong> if:</p>
+                <ul style="color:#555;line-height:1.8;padding-left:20px;margin-bottom:12px;">
+                  <li>Official lecturer report is provided</li>
+                  <li>Low grade resulted from Agency deficiencies</li>
+                  <li>Client complied with all instructions</li>
+                </ul>
+                <p style="color:#666;font-size:0.9rem;background:#fff3cd;padding:12px;border-radius:6px;margin:0;"><strong>⚠️ No refund if:</strong> Poor defence, late submission, plagiarism, or AI use by Client.</p>
+              </div>
+
+              <!-- Section 3 -->
+              <div class="terms-card">
+                <h3 style="color:#6a1b9a;font-size:1.2rem;margin-top:0;">🔄 Failure & Rewrite Policy</h3>
+                <p style="color:#333;line-height:1.6;"><strong>If Agency is Liable:</strong> Free rewrite of the same project or alternative work as compensation.</p>
+                <p style="color:#333;line-height:1.6;"><strong>If Client is Liable:</strong> (e.g., plagiarism, alterations after delivery) Rewrite available at <strong>50% of original fee</strong>.</p>
+                <p style="color:#666;font-size:0.9rem;background:#d1ecf1;padding:12px;border-radius:6px;margin:0;"><strong>ℹ️ Note:</strong> Liability is assessed based on documented evidence and supervisor feedback.</p>
+              </div>
+
+              <!-- Section 4 -->
+              <div class="terms-card">
+                <h3 style="color:#6a1b9a;font-size:1.2rem;margin-top:0;">📝 Topic Changes</h3>
+                <p style="color:#333;line-height:1.6;"><strong>Complete Topic Change:</strong> Treated as a <strong>new project</strong> with new fees.</p>
+                <p style="color:#333;line-height:1.6;"><strong>After Acceptance:</strong> Fair fee adjustment determined at Agency discretion (not automatic 50%).</p>
+                <p style="color:#666;font-size:0.9rem;background:#d4edda;padding:12px;border-radius:6px;margin:0;"><strong>✓ Tip:</strong> Communicate topic changes early to minimize additional costs.</p>
+              </div>
+
+              <!-- Section 5 -->
+              <div class="terms-card">
+                <h3 style="color:#6a1b9a;font-size:1.2rem;margin-top:0;">✅ Acceptance of Work</h3>
+                <p style="color:#333;line-height:1.6;"><strong>When Deemed Accepted:</strong> When supervisor reviews and accepts delivered portion.</p>
+                <p style="color:#333;line-height:1.6;"><strong>After Acceptance:</strong> Subsequent rewrites incur additional fees unless pre-arranged.</p>
+                <p style="color:#666;font-size:0.9rem;background:#f0e6ff;padding:12px;border-radius:6px;margin:0;"><strong>💡 Option:</strong> Pay upfront for rewrite/change coverage to avoid future charges.</p>
+              </div>
+
+              <!-- Section 6 -->
+              <div class="terms-card">
+                <h3 style="color:#6a1b9a;font-size:1.2rem;margin-top:0;">⚙️ Client Alterations</h3>
+                <p style="color:#333;line-height:1.6;"><strong>Your Responsibility:</strong> If you alter or rewrite work after delivery, Sabipikin bears no responsibility for outcomes.</p>
+                <p style="color:#333;line-height:1.6;"><strong>Penalties & Failures:</strong> Any resulting penalties are your sole responsibility.</p>
+                <p style="color:#666;font-size:0.9rem;background:#f8d7da;padding:12px;border-radius:6px;margin:0;"><strong>⚠️ Important:</strong> Use delivered work as-is or request official rewrites.</p>
+              </div>
+
+              <!-- Section 7 -->
+              <div class="terms-card">
+                <h3 style="color:#6a1b9a;font-size:1.2rem;margin-top:0;">💬 Consultation-Only Services</h3>
+                <p style="color:#333;line-height:1.6;"><strong>What You Get:</strong> Guidance and advice only—no writing or submissions.</p>
+                <p style="color:#333;line-height:1.6;"><strong>Your Responsibility:</strong> Implementation and outcomes based on your application of advice.</p>
+                <p style="color:#666;font-size:0.9rem;background:#e2e3e5;padding:12px;border-radius:6px;margin:0;"><strong>ℹ️ Note:</strong> Perfect for mentorship and direction-setting sessions.</p>
+              </div>
+
+              <!-- Section 8 -->
+              <div class="terms-card">
+                <h3 style="color:#6a1b9a;font-size:1.2rem;margin-top:0;">💳 Payment Terms</h3>
+                <p style="color:#333;line-height:1.6;"><strong>Payment Required:</strong> Before work commences.</p>
+                <p style="color:#333;line-height:1.6;"><strong>Payment Structure:</strong></p>
+                <ul style="color:#555;line-height:1.8;padding-left:20px;margin-bottom:12px;">
+                  <li><strong>Below £150:</strong> Full upfront</li>
+                  <li><strong>£150–£200:</strong> 50% upfront, balance before delivery</li>
+                  <li><strong>£200–£300:</strong> Three-stage payments</li>
+                  <li><strong>Above £300:</strong> Custom arrangement</li>
+                </ul>
+                <p style="color:#666;font-size:0.9rem;background:#fff3cd;padding:12px;border-radius:6px;margin:0;"><strong>🔒 Guarantee:</strong> No work released until full payment received.</p>
+              </div>
+
+              <!-- Section 9 -->
+              <div class="terms-card">
+                <h3 style="color:#6a1b9a;font-size:1.2rem;margin-top:0;">🤲 Referral Program</h3>
+                <p style="color:#333;line-height:1.6;"><strong>Commission:</strong> <strong>5%</strong> of the first completed job of referred Client.</p>
+                <p style="color:#333;line-height:1.6;"><strong>Payout:</strong> To referrer's designated account.</p>
+                <p style="color:#666;font-size:0.9rem;background:#d1ecf1;padding:12px;border-radius:6px;margin:0;"><strong>ℹ️ Note:</strong> Transaction charges borne by referrer.</p>
+              </div>
+
+              <!-- Section 10 -->
+              <div class="terms-card">
+                <h3 style="color:#6a1b9a;font-size:1.2rem;margin-top:0;">🔒 Confidentiality</h3>
+                <p style="color:#333;line-height:1.6;"><strong>Your Data:</strong> All communications and personal data treated as strictly confidential.</p>
+                <p style="color:#333;line-height:1.6;"><strong>Sharing:</strong> Never shared with third parties except where required by law.</p>
+                <p style="color:#666;font-size:0.9rem;background:#d4edda;padding:12px;border-radius:6px;margin:0;"><strong>✓ Promise:</strong> Your privacy is sacred and fully protected.</p>
+              </div>
+
+              <!-- Section 11 -->
+              <div class="terms-card">
+                <h3 style="color:#6a1b9a;font-size:1.2rem;margin-top:0;">⚖️ Governing Law</h3>
+                <p style="color:#333;line-height:1.6;">These Terms are governed by applicable international laws and legal principles, taking into account the jurisdiction in which services are rendered.</p>
+                <p style="color:#666;font-size:0.9rem;background:#e2e3e5;padding:12px;border-radius:6px;margin:0;"><strong>ℹ️ Note:</strong> Fair and enforceable across all regions.</p>
+              </div>
+
+              <!-- Section 12 -->
+              <div class="terms-card">
+                <h3 style="color:#6a1b9a;font-size:1.2rem;margin-top:0;">📢 Future Amendments</h3>
+                <p style="color:#333;line-height:1.6;"><strong>Right Reserved:</strong> Sabipikin may amend these Terms at any time.</p>
+                <p style="color:#333;line-height:1.6;"><strong>Acceptance:</strong> Continued engagement constitutes acceptance of revised Terms.</p>
+                <p style="color:#666;font-size:0.9rem;background:#f0f0f0;padding:12px;border-radius:6px;margin:0;"><strong>ℹ️ Note:</strong> Check updates regularly for policy changes.</p>
+              </div>
+            </div>
+
+            <!-- Final CTA -->
+            <div style="background:linear-gradient(135deg,#6a1b9a 0%,#5a1580 100%);color:#fff;padding:40px 24px;border-radius:16px;text-align:center;margin-top:40px;box-shadow:0 8px 24px rgba(106,27,154,0.2);">
+              <h2 style="margin-top:0;margin-bottom:12px;">Questions About Our Terms?</h2>
+              <p style="margin-bottom:18px;font-size:1.05rem;">We're here to clarify any concerns or discuss your specific situation.</p>
+              <p style="margin:0;color:rgba(255,255,255,0.9);"><strong>WhatsApp:</strong> +2347037154753 | <strong>Email:</strong> admin@sabipikin.xyz</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</section>
+
+<!-- Footer with service summaries in purple (moved below dashboard) -->
+<footer>
+  <div class="footer-services" style="max-width:1100px;margin:0 auto;padding:30px 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;">
+    <div class="footer-col">
+      <h4 style="color:#fff;margin-top:0;">Sabipikin Academic Help</h4>
+      <p style="color:#fff;">Proven academic excellence across BSc and MSc students, support for proposals, research, writing, and defenses. AI-free, original, and fully supported with revisions.</p>
+    </div>
+    <div class="footer-col">
+      <h4 style="color:#fff;margin-top:0;"><a href="https://academy.sabipikin.xyz" target="_blank" style="color:#fff;text-decoration:none;">Sabipikin Educates</a></h4>
+      <p style="color:#fff;">Project-based, practical training and mentorship focused on building global IT careers, industry-aligned projects, and recognized certifications.</p>
+    </div>
+    <div class="footer-col">
+      <h4 style="color:#fff;margin-top:0;">Sabipikin Learn</h4>
+      <p style="color:#fff;">Flexible skill-learning tracks to help learners gain career-ready capabilities in data, AI, and software skills.</p>
+    </div>
+  </div>
+  <div style="text-align:center;padding:12px 20px;background:transparent;color:#fff;">
+    <div>© 2026 Sabipikin | Academic Help</div>
+    <div>WhatsApp: +2347037154753 | Email: admin@sabipikin.xyz</div>
+  </div>
+</footer>
+
+<!-- Hidden apply form (revealed by openForm) -->
+<!-- Form placeholder - add your custom form here -->
+<div id="apply" class="hidden"></div>
+
+  <script>
+  function showPanel(id) {
+    // Hide all panels
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    // Always show dashboard section
+    const dashboard = document.getElementById('dashboard');
+    if (dashboard) dashboard.style.display = '';
+    // Show home sections by default
+    document.getElementById('home').style.display = '';
+    const homeContent = document.getElementById('home-content');
+    if (homeContent) homeContent.style.display = '';
+
+    if (id === 'home') {
+      document.querySelectorAll('header .nav a').forEach(a => a.classList.remove('active'));
+      const linkHome = document.querySelector('header .logo-link');
+      if (linkHome) linkHome.focus();
+      document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
+      history.replaceState(null, '', '#home');
+      return;
+    }
+
+    // If Academic or Terms, hide home sections and show only the respective panel
+
+    if (id === 'academic' || id === 'terms') {
+      document.getElementById('home').style.display = 'none';
+      if (homeContent) homeContent.style.display = 'none';
+      // Show dashboard if hidden
+      if (dashboard) dashboard.style.display = '';
+    }
+
+    const el = document.getElementById('panel-' + id);
+    if (el) el.classList.add('active');
+
+    // highlight top menu
+    document.querySelectorAll('header .nav a').forEach(a => a.classList.remove('active'));
+    const link = document.querySelector('header .nav a[href="#' + id + '"]');
+    if (link) link.classList.add('active');
+
+    // bring dashboard into view
+    const dash = document.getElementById('dashboard');
+    if (dash) dash.scrollIntoView({ behavior: 'smooth' });
+
+    history.replaceState(null, '', '#' + id);
+  }
+
+  function openForm(service) {
+    document.getElementById('apply').classList.remove('hidden');
+    const sel = document.getElementById('service');
+    const exists = Array.from(sel.options).some(o => o.value === service || o.text === service);
+    if (!exists) {
+      const opt = document.createElement('option');
+      opt.value = service;
+      opt.text = service;
+      sel.appendChild(opt);
+    }
+    sel.value = service;
+    window.location.hash = 'apply';
+  }
+
+  window.addEventListener('load', function() {
+    const h = location.hash.replace('#', '');
+    if (!h) return;
+    if (h === 'apply') return; // keep apply hidden logic handled by openForm
+    if (['home','academic','terms'].includes(h)) showPanel(h);
+  });
+
+  window.addEventListener('hashchange', function() {
+    const h = location.hash.replace('#', '');
+    if (!h) return;
+    if (h === 'apply') {
+      document.getElementById('apply').classList.remove('hidden');
+      return;
+    }
+    if (['home','academic','terms'].includes(h)) showPanel(h);
+  });
+  </script>
+
+</body>
+</html>
