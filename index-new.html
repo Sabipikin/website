@@ -2,11 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>SabiPath | Expert MSc Coaching & Single Assessment Support</title>
+<title>SabiPath | MSc Coaching & Academic Support</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="MSc coaching & thesis support. Annual membership or single assessment help. Academic integrity protected. UK & Ireland.">
 <link rel="icon" type="image/png" href="logo3.png">
-<script src="https://js.stripe.com/v3/"></script>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { width: 100%; overflow-x: hidden; }
@@ -366,11 +364,11 @@ section.active { display: block !important; }
 <!-- HERO CONTENT -->
 <section id="home" class="active">
   <div class="hero-content">
-    <h2>Master Your MSc. Defend With Confidence.</h2>
-    <p>Expert coaching & detailed feedback from start to finish. Whether you need full-year support or help with one critical assignment — we've got you covered.</p>
+    <h2>Finish Your MSc With Confidence</h2>
+    <p>Expert coaching & feedback at every stage — from your first assignment through thesis defense</p>
     <div class="hero-actions">
-      <button class="btn btn-primary" onclick="showSection('pricing')">Explore Options</button>
-      <button class="btn btn-secondary" onclick="openModal('booking')">Book Free Consultation</button>
+      <button class="btn btn-primary" onclick="showSection('pricing')">View Pricing</button>
+      <button class="btn btn-secondary" onclick="openModal('booking')">Book Consultation</button>
     </div>
   </div>
 
@@ -658,53 +656,24 @@ section.active { display: block !important; }
   </div>
 </section>
 
-<!-- BOOKING MODAL - CALENDLY -->
+<!-- BOOKING MODAL -->
 <div id="booking-modal" class="modal">
-  <div class="modal-content" style="max-width:700px;">
+  <div class="modal-content">
     <span class="modal-close" onclick="closeModal('booking')">&times;</span>
-
-    <div id="calendly-section">
-      <h2 style="color:#1f3b57;margin-bottom:12px;">📅 Schedule Your Consultation</h2>
-      <p style="color:#666;margin-bottom:24px;">Pick a time that works for you. We'll discuss your needs and recommend the best plan.</p>
-
-      <!-- Calendly Embed -->
-      <div class="calendly-inline-widget" data-url="https://calendly.com/sabipikin/consultation?hide_event_type_details=1&hide_gdpr_block=1" style="min-width:320px;height:600px;"></div>
-      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-
-      <p style="color:#999;font-size:0.85em;text-align:center;margin-top:20px;">⏰ 30-minute call • No credit card required • Receive Zoom link via email</p>
-    </div>
-
-    <div id="payment-section" style="display:none;">
-      <h2 style="color:#1f3b57;margin-bottom:12px;">💳 Complete Your Payment</h2>
-      <p style="color:#666;margin-bottom:24px;" id="payment-summary">You're about to secure your spot.</p>
-
-      <form id="payment-form" style="display:grid;gap:16px;" onsubmit="handlePayment(event)">
-        <input type="text" id="fullName" placeholder="Full Name" required style="padding:12px;border:1px solid #ddd;border-radius:6px;">
-        <input type="email" id="email" placeholder="Email Address" required style="padding:12px;border:1px solid #ddd;border-radius:6px;">
-
-        <div id="card-element" style="border:1px solid #ddd;padding:12px;border-radius:6px;background:#fff;"></div>
-        <div id="card-errors" style="color:red;margin-top:8px;font-size:0.9em;"></div>
-
-        <div style="background:#f9f9f9;padding:16px;border-radius:6px;border-left:4px solid #b8860b;">
-          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
-            <span style="color:#666;">Service:</span>
-            <span style="font-weight:bold;color:#1f3b57;" id="service-display">Annual Membership</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;font-size:1.3em;font-weight:bold;color:#b8860b;">
-            <span>Total:</span>
-            <span id="amount-display">£3,000</span>
-          </div>
-        </div>
-
-        <button type="submit" class="btn btn-primary" style="width:100%;padding:16px;font-size:1.1em;" id="pay-button">
-          Pay & Secure Spot
-        </button>
-
-        <p style="color:#999;font-size:0.85em;text-align:center;">
-          🔒 Secure payment • Stripe secured • Receipt emailed immediately
-        </p>
-      </form>
-    </div>
+    <h2 style="color:#1f3b57;margin-bottom:20px;">Book Your Consultation</h2>
+    <p style="color:#666;margin-bottom:20px;">Let's discuss your needs and find the right plan for you.</p>
+    <form style="display:grid;gap:16px;" onsubmit="handleBooking(event)">
+      <input type="text" placeholder="Your Name" required style="padding:12px;border:1px solid #ddd;border-radius:6px;">
+      <input type="email" placeholder="Your Email" required style="padding:12px;border:1px solid #ddd;border-radius:6px;">
+      <select style="padding:12px;border:1px solid #ddd;border-radius:6px;" required>
+        <option value="">Select Option</option>
+        <option value="annual">Annual Membership</option>
+        <option value="single">Single Assessment</option>
+      </select>
+      <textarea placeholder="Tell us about your needs..." rows="4" style="padding:12px;border:1px solid #ddd;border-radius:6px;resize:none;"></textarea>
+      <button type="submit" class="btn btn-primary" style="width:100%;">Schedule Call</button>
+      <p style="color:#999;font-size:0.9em;text-align:center;">We'll contact you within 24 hours</p>
+    </form>
   </div>
 </div>
 
@@ -742,9 +711,6 @@ section.active { display: block !important; }
 let currentMode = 'annual';
 let currentAssessment = 'essay';
 let currentTurnaround = 'standard';
-let stripe = null;
-let elements = null;
-let cardElement = null;
 
 const assessmentPrices = {
   essay: { standard: 180, rush: 230 },
@@ -758,12 +724,6 @@ const assessmentDetails = {
   chapter: 'In-depth review + structural guidance (5,000–10,000 words)',
   defense: '1-hour viva prep session + materials',
   bulk: '2-3 assessments over semester (10-20% discount)'
-};
-
-const tierPrices = {
-  basic: 2500,
-  regular: 3000,
-  premium: 3500
 };
 
 function switchMode(mode) {
@@ -815,107 +775,17 @@ function toggleFaq(el) {
 }
 
 function openModal(id) {
-  const modal = document.getElementById(id + '-modal');
-  modal.classList.add('active');
-
-  if (id === 'booking') {
-    initStripe();
-  }
+  document.getElementById(id + '-modal').classList.add('active');
 }
 
 function closeModal(id) {
   document.getElementById(id + '-modal').classList.remove('active');
 }
 
-function initStripe() {
-  if (stripe) return;
-
-  // Initialize Stripe (use your publishable key)
-  stripe = Stripe('pk_test_51234567890abcdefg'); // Replace with your key
-  elements = stripe.elements();
-  cardElement = elements.create('card');
-  cardElement.mount('#card-element');
-
-  cardElement.addEventListener('change', function(event) {
-    const displayError = document.getElementById('card-errors');
-    if (event.error) {
-      displayError.textContent = event.error.message;
-    } else {
-      displayError.textContent = '';
-    }
-  });
-}
-
-async function handlePayment(e) {
+function handleBooking(e) {
   e.preventDefault();
-
-  const payButton = document.getElementById('pay-button');
-  payButton.disabled = true;
-  payButton.textContent = 'Processing...';
-
-  const amount = currentMode === 'annual'
-    ? tierPrices[getTierFromButton()] * 100
-    : assessmentPrices[currentAssessment][currentTurnaround] * 100;
-
-  const name = document.getElementById('fullName').value;
-  const email = document.getElementById('email').value;
-
-  // Create payment method
-  const {error, paymentMethod} = await stripe.createPaymentMethod({
-    type: 'card',
-    card: cardElement,
-    billing_details: {name, email}
-  });
-
-  if (error) {
-    document.getElementById('card-errors').textContent = error.message;
-    payButton.disabled = false;
-    payButton.textContent = 'Pay & Secure Spot';
-    return;
-  }
-
-  // Send to server (you'll need a backend endpoint)
-  try {
-    const response = await fetch('/create-payment-intent', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        amount,
-        paymentMethodId: paymentMethod.id,
-        email,
-        name,
-        service: currentMode === 'annual' ? getTierFromButton() : currentAssessment
-      })
-    });
-
-    const data = await response.json();
-
-    if (data.success) {
-      alert('✅ Payment successful! Check your email for confirmation.');
-      closeModal('booking');
-      payButton.disabled = false;
-      payButton.textContent = 'Pay & Secure Spot';
-    } else {
-      alert('❌ Payment failed. Please try again.');
-      payButton.disabled = false;
-      payButton.textContent = 'Pay & Secure Spot';
-    }
-  } catch (err) {
-    console.error('Payment error:', err);
-    // For demo: just show success
-    alert('✅ Booking confirmed! We\'ll send details to: ' + email);
-    closeModal('booking');
-    payButton.disabled = false;
-    payButton.textContent = 'Pay & Secure Spot';
-  }
-}
-
-function getTierFromButton() {
-  const clicked = event.target.textContent;
-  if (clicked.includes('Basic')) return 'basic';
-  if (clicked.includes('Regular')) return 'regular';
-  if (clicked.includes('Premium')) return 'premium';
-  return 'regular';
+  alert('Thank you! We will contact you within 24 hours.');
+  closeModal('booking');
 }
 
 function showSection(id) {
